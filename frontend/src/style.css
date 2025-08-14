@@ -1,0 +1,155 @@
+:root {
+  --hr-green: #00A86B;
+  --hr-green-dark: #007a4f;
+  --light-bg: #f9f9f9;
+  --border-color: #ddd;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Page Layout */
+.page-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--light-bg);
+}
+
+/* Card */
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-top: 4px solid var(--hr-green);
+}
+
+/* Headings */
+.card h2 {
+  text-align: center;
+  color: var(--hr-green);
+  margin-bottom: 1.5rem;
+}
+
+/* Input fields */
+.input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--hr-green);
+  box-shadow: 0 0 4px var(--hr-green);
+}
+
+/* Button */
+.btn {
+  background: var(--hr-green);
+  color: white;
+  padding: 12px;
+  border: none;
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  background: var(--hr-green-dark);
+}
+
+/* Form grid (for register) */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-grid .btn {
+  grid-column: span 2;
+}
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--hr-green);
+  padding: 1rem 2rem;
+  color: white;
+}
+
+.navbar h1 {
+  font-size: 1.5rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Sidebar + Dashboard Layout */
+.dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background: var(--hr-green-dark);
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sidebar a {
+  color: white;
+  padding: 1rem;
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar a:hover {
+  background: var(--hr-green);
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  background: var(--light-bg);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.dashboard-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
