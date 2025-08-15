@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../style.css';
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ function Login() {
     setError('');
     try {
       const res = await axios.post('http://127.0.0.1:8000/api/login/', {
-        username,
+        email,
         password,
       });
       if (res.data && res.data.worker_id) {
@@ -39,10 +39,10 @@ function Login() {
       <h2>Login</h2>
       <form onSubmit={handleSubmit} className="form">
         <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
           required
         />
         <input

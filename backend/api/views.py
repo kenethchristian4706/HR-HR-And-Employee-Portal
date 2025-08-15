@@ -49,13 +49,13 @@ def registerWorker(request):
 
 @api_view(['POST'])
 def login(request):
-    username = request.data.get('username')
+    email = request.data.get('email')
     password = request.data.get('password')
 
-    if not username or not password:
-        return Response({"error": "Please provide both username and password"}, status=status.HTTP_400_BAD_REQUEST)
+    if not email or not password:
+        return Response({"error": "Please provide both email and password"}, status=status.HTTP_400_BAD_REQUEST)
 
-    worker = Worker.objects.filter(full_name=username).first()
+    worker = Worker.objects.filter(email=email).first()
     if worker is None:
         return Response({"error": "Worker not found"}, status=status.HTTP_404_NOT_FOUND)
 
