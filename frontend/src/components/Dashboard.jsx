@@ -1,35 +1,38 @@
-import Navbar from "./Navbar";
-// import "./style.css";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../style.css';
+import axios from 'axios';
 
-export default function Dashboard({ user, onLogout }) {
+function Dashboard() {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    } else {
+      navigate('/login');
+    }
+  }, [navigate]);
+
+  const handleLogout = async () => {
+    try {
+      await axios.post('http://127.0.0.1:8000/api/logout/');
+    } catch (err) {}
+    localStorage.removeItem('user');
+    navigate('/');
+  };
+
+  if (!user) return null;
+
   return (
-    <>
-      <Navbar onLogout={onLogout} />
-      <div className="dashboard">
-        <div className="sidebar">
-          {user.role === "HR" ? (
-            <>
-              <a href="/manage-employees">Manage Employees</a>
-              <a href="/add-employee">Add Employee</a>
-              <a href="/reports">Reports</a>
-            </>
-          ) : (
-            <>
-              <a href="/my-profile">My Profile</a>
-              <a href="/my-tasks">My Tasks</a>
-              <a href="/leave-request">Leave Request</a>
-            </>
-          )}
-        </div>
-        <div className="content">
-          <h2>Welcome, {user.full_name}</h2>
-          <div className="card-grid">
-            <div className="dashboard-card">📋 {user.role === "HR" ? "Total Employees: 25" : "Your Tasks: 5"}</div>
-            <div className="dashboard-card">📅 Upcoming Events</div>
-            <div className="dashboard-card">📊 Performance Overview</div>
-          </div>
-        </div>
-      </div>
-    </>
+    <div className="container dashboard">
+      <h2>Welcome, {user.worker_id ? user.worker_id : ''}</h2>
+      <p>Role: {user.role}</p>
+      <button className="btn" onClick={handleLogout}>Logout</button>
+    </div>
   );
 }
+
+export default Dashboard;

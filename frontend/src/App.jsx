@@ -1,22 +1,20 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import RegisterWorker from "./components/RegisterWorker";
+
+import HomePage from "./components/HomePage";
 import Login from "./components/Login";
+import Signup from "./components/Signup";
 import Dashboard from "./components/Dashboard";
-import Navbar from "./components/Navbar";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
   return (
     <Router>
-      <Navbar />
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/register" element={<RegisterWorker />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
     </Router>
   );
 }
